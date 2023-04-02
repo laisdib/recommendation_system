@@ -127,7 +127,6 @@ class App(customtkinter.CTk):
 
     def optionmenu_callback(self, option_var):
         order_by = self.option_menu.get()
-        restaurants_data = pd.DataFrame()
 
         self.scroll = customtkinter.CTkScrollbar(master=self)
         self.scroll.grid(row=5, column=1, rowspan=8, padx=(0, 0), sticky="e")
