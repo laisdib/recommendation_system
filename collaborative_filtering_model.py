@@ -4,13 +4,13 @@ import pandas as pd
 '''Código usado para usuários da base de dados que já avaliaram pelo menos um restaurante'''
 
 # Função para o cálculo da Similaridade Cosseno
-def cosine_similarity(userID, dataframe):
+def cosine_similarity(user_id, dataframe):
     # Listando os índices do dataframe e removendo o que será analisado
     index_df = [i for i in dataframe.index]
-    index_df.remove(userID)
+    index_df.remove(user_id)
 
     # Calculando o comprimento do vetor do usuário a ser analisado
-    sum_x2 = (dataframe.loc[userID] ** 2).sum()
+    sum_x2 = (dataframe.loc[user_id] ** 2).sum()
     sum_y2 = []
     xy = []
     
@@ -23,7 +23,7 @@ def cosine_similarity(userID, dataframe):
         sum_y2.append(summation)
 
         # Calculando o produto dos vetores para toda a base de dados
-        product = (dataframe.loc[userID] * dataframe.loc[index]).sum()
+        product = (dataframe.loc[user_id] * dataframe.loc[index]).sum()
         xy.append(product)
 
     # Calculando a Similaridade Cosseno para cada usuário
@@ -41,14 +41,14 @@ def cosine_similarity(userID, dataframe):
 
 
 # Função para recomendar os restaurantes dos usuários com maior similaridade
-def recommendation(userID, most_similar, dataframe):
+def recommendation(user_id, most_similar, dataframe):
     restaurants = []
 
     for i in most_similar:
         dataframe.sort_values(by=i, axis=1, ascending=False)
         
         for j in dataframe.columns:
-            if (dataframe.loc[i][j] != 0) and (dataframe.loc[userID][j] == 0):
+            if (dataframe.loc[i][j] != 0) and (dataframe.loc[user_id][j] == 0):
                 if j not in restaurants:
                     restaurants.append(j)
 

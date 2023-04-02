@@ -1,11 +1,9 @@
-# from popular_restaurants import rating_rank, score_rank
-# from collaborative_filtering_model import recommended_restaurants
 import pandas as pd
 
 
 # Função para retornar o nome de usuário
-def return_user(userID, dataframe):
-  user_data = dataframe.loc[dataframe["userID"] == userID]
+def return_user(user_id, dataframe):
+  user_data = dataframe.loc[dataframe["userID"] == user_id]
   user_data = user_data.to_dict("index")
 
   user_data = [value for value in user_data.values()]
@@ -15,11 +13,11 @@ def return_user(userID, dataframe):
 
 
 # Função para retornar a quantidade de avaliações um usuário já fez
-def counting_ratings_user(userID, dataset):
+def counting_ratings_user(user_id, dataset):
   amount_ratings = dataset["userID"].value_counts()
 
-  if userID in amount_ratings:
-    return amount_ratings[userID]
+  if user_id in amount_ratings:
+    return amount_ratings[user_id]
   else:
     return 0
 

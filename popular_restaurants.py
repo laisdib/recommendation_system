@@ -27,10 +27,10 @@ def sort_most_rating_score(dataframe, metric):
 
 # Função para retornar os nomes dos restaurantes mapeados pelo ID
 def return_name_restaurants(rank, dataframe):
-    placesID = rank["placeID"]
+    places_id = rank["placeID"]
     names = []
 
-    for id in placesID:
+    for id in places_id:
         rest_data = dataframe.loc[dataframe["placeID"] == id]
         rest_data = rest_data.to_dict("index")
         rest_data = [value for value in rest_data.values()]
